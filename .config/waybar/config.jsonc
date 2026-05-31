@@ -1,0 +1,129 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "margin": "6px 8px 0 8px",
+    "spacing": 4,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "idle_inhibitor",
+        "bluetooth",
+        "pulseaudio",
+        "network",
+        "power-profiles-daemon",
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "clock",
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "warp-on-scroll": false,
+        "format": "{name}",
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4, 5]
+        }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "\uf06e",
+            "deactivated": "\uf070"
+        }
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%a %d %b  %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d %H:%M:%S}"
+    },
+    "cpu": {
+        "format": "{usage}% \uf2db",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% \uf1c0"
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["\uf2c9", "\uf2c9", "\uf2c9"]
+    },
+    "battery": {
+        "states": {
+            "full": 100,
+            "good": 80,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "\uf240",
+        "format-charging": "{capacity}% \uf0e7",
+        "format-plugged": "{capacity}% \uf1e6",
+        "format-alt": "{time} {icon}",
+        "tooltip-format": "{timeTo}",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "\uf0e7",
+            "performance": "\uf0e7",
+            "balanced": "\uf625",
+            "power-saver": "\uf06c"
+        }
+    },
+    "network": {
+        "interval": 5,
+        "format-wifi": "{essid:.14} {signalStrength}% \uf1eb",
+        "format-ethernet": "{ipaddr} \uf6ff",
+        "format-linked": "{ifname} (No IP) \uf6ff",
+        "format-disconnected": "\u26a0",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid}\n{ifname}  {ipaddr}/{cidr}\nGateway: {gwaddr}\nSignal: {signalStrength}% ({frequency} GHz)",
+        "tooltip-format-ethernet": "{ifname}  {ipaddr}/{cidr}\nGateway: {gwaddr}",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+    "bluetooth": {
+        "format": "\uf293",
+        "format-connected": "\uf293 {num_connections}",
+        "format-disabled": "",
+        "tooltip-format": "Bluetooth — {controller_alias} ({controller_address})",
+        "tooltip-format-connected": "{controller_alias} ({controller_address})\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias} — {device_address}",
+        "on-click": "blueman-manager"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% \uf293 {format_source}",
+        "format-bluetooth-muted": "\uf026 \uf293 {format_source}",
+        "format-muted": "\uf026 {format_source}",
+        "format-source": "\uf130",
+        "format-source-muted": "",
+        "tooltip-format": "{desc} — {volume}%",
+        "format-icons": {
+            "headphone": "\uf025",
+            "hands-free": "\uf590",
+            "headset": "\uf590",
+            "phone": "\uf095",
+            "portable": "\uf001",
+            "car": "\uf1b9",
+            "default": ["\uf026", "\uf027", "\uf028"]
+        },
+        "on-click": "pavucontrol"
+    }
+}
