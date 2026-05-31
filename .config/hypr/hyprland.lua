@@ -3,10 +3,10 @@
 ---------------
 
 hl.monitor({
-	output = "",
-	mode = "preferred",
-	position = "auto",
-	scale = "auto",
+    output = "",
+    mode = "preferred",
+    position = "auto",
+    scale = "auto",
 })
 
 ----------------
@@ -16,6 +16,46 @@ hl.monitor({
 local terminal = "kitty"
 local fileManager = "dolphin"
 local menu = "wofi --show drun"
+
+------------
+--- LOOK ---
+------------
+
+hl.config({
+    general = {	
+	gaps_in = 5,
+	gaps_out = 15,
+	border_size = 2,
+	
+	col = {
+            active_border = "rgba(ffffffff)",
+	    inactive_border = "rgba(595959aa)",
+	},
+	
+	layout = "dwindle"
+    },
+
+    decoration = {
+    	rounding = 10,
+	active_opacity = 1.0,
+	inactive_opacity = 1.0,
+	
+	shadow = {
+	    enabled = true,
+	    range = 5,
+	    render_power = 3,
+	    color = "rgba(1a1a1aee)"
+	},
+	
+	blur = {
+	    enabled = true,
+	    size = 3,
+	    passes = 1,
+	    vibrancy = 0.1750
+	},
+    },
+})
+
 
 ----------------
 --- KEYBINDS ---
@@ -28,6 +68,7 @@ hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exit())
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 
 -- Focus
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
