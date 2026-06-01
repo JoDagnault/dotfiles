@@ -84,6 +84,30 @@ hl.config({
         preserve_split = true,
     },
 
+    input = {
+        kb_layout = "us",
+	kb_variant = "",
+	kb_model = "",
+	kb_options = "",
+	kb_rules = "",
+	
+	numlock_by_default = true,
+
+	repeat_rate = 50,
+	repeat_delay = 300,
+
+	follow_mouse = 1,
+	sensitivity = 0.0,
+	accel_profile = "adaptive",
+
+	touchpad = {
+	    natural_scroll = true,
+	    disable_while_typing = true,
+            clickfinger_behavior = true,
+            scroll_factor = 1.0,
+        },
+    },
+
     misc = {
         force_default_wallpaper = -1,
         disable_hyprland_logo = true,
@@ -181,3 +205,11 @@ hl.bind(mainMod .. " + SHIFT + 8", hl.dsp.window.move({ workspace = 8 }))
 hl.bind(mainMod .. " + SHIFT + 9", hl.dsp.window.move({ workspace = 9 }))
 hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = 10 }))
 
+-- Media Keys
+-- Laptop function/media keys
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"))
+
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 10%-"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 10%+"))
