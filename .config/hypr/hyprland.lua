@@ -22,7 +22,21 @@ local menu = "wofi"
 -----------------
 hl.on("hyprland.start", function()
     hl.exec_cmd("~/.config/waybar/watch-waybar.sh")
+    hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    hl.exec_cmd("mako")
+    hl.exec_cmd("nm-applet --indicator")
+    hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+    hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'")
 end)
+
+-----------------------------
+--- ENVIRONMENT VARIABLES ---
+-----------------------------
+
+-- NVIDIA Wayland
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("__GLX_VENDRO_LIBRARY_NAME", "nvidia")
 
 ------------
 --- LOOK ---
