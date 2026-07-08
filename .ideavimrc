@@ -1,4 +1,4 @@
 let mapleader = " "
 
 nmap <leader>a <Action>(ShowIntentionActions)
-vmap <leader>a <Action>(ShowIntentionActions)
+nmap <leader>e <Action>(ActivateExplorerToolWindow)
