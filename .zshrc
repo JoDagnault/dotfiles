@@ -16,3 +16,14 @@ PROMPT='%F{#a9b665}%1~%f%F{#7daea3}${vcs_info_msg_0_}%f %(!.#.$) '
 if [ -S "$XDG_RUNTIME_DIR/keyring/ssh" ]; then
   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
 fi
+
+# bun completions
+[ -s "/home/jodagnault/.bun/_bun" ] && source "/home/jodagnault/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

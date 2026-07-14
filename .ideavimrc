@@ -2,3 +2,4 @@ let mapleader = " "
 
 nmap <leader>a <Action>(ShowIntentionActions)
 nmap <leader>e <Action>(ActivateProjectToolWindow)
+nmap <leader>r <Action>(ActivateRunToolWindow)
