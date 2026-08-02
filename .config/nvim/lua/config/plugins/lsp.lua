@@ -23,7 +23,19 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-          "omnisharp"
+          "omnisharp",
+          "rust_analyzer",
+          "basedpyright",
+          "ts_ls",
+          "clangd",
+          "gopls",
+          "jdtls",
+          "sqls",
+          "html",
+          "cssls",
+          "jsonls",
+          "yamlls",
+          "marksman"
       },
         automatic_enable = true,
       })
