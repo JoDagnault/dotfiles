@@ -72,7 +72,7 @@ button:hover {
 #battery,
 #cpu,
 #custom-cpu-temperature,
-#custom-gpu-temperature,
+#custom-gpu-status,
 #memory,
 #disk,
 #network,
@@ -84,6 +84,14 @@ button:hover {
 #power-profiles-daemon {
     padding: 0 10px;
     color: #c0c8d0;
+}
+
+#cpu {
+    padding-right: 4px;
+}
+
+#custom-cpu-temperature {
+    padding-left: 0;
 }
 
 #window,
@@ -179,12 +187,12 @@ label:focus {
 }
 
 #custom-cpu-temperature.warning,
-#custom-gpu-temperature.warning {
+#custom-gpu-status.warning {
     color: #e5a50a;
 }
 
 #custom-cpu-temperature.critical,
-#custom-gpu-temperature.critical {
+#custom-gpu-status.critical {
     color: #eb4d4b;
 }
 

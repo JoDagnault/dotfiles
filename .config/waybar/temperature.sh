@@ -45,12 +45,10 @@ read_millidegrees() {
     printf '%d\n' "$(((value + 500) / 1000))"
 }
 
-emit_temperature() {
-    local label="$1"
-    local temperature="$2"
-    local source="$3"
-    local warning="$4"
-    local critical="$5"
+temperature_state() {
+    local temperature="$1"
+    local warning="$2"
+    local critical="$3"
     local state="normal"
 
     if ((temperature >= critical)); then
@@ -59,8 +57,7 @@ emit_temperature() {
         state="warning"
     fi
 
-    printf '{"text":"%s %d°C","tooltip":"%s temperature: %d°C via %s","class":"%s"}\n' \
-        "$label" "$temperature" "$label" "$temperature" "$source" "$state"
+    printf '%s\n' "$state"
 }
 
 read_cpu_temperature() {
@@ -82,34 +79,46 @@ read_cpu_temperature() {
     fi
 
     temperature="$(read_millidegrees "$input")" || return 1
-    emit_temperature CPU "$temperature" "$source" 80 90
+    printf '{"text":"%d°C","tooltip":"CPU temperature: %d°C via %s","class":"%s"}\n' \
+        "$temperature" "$temperature" "$source" "$(temperature_state "$temperature" 80 90)"
 }
 
 read_gpu_temperature() {
     local telemetry=""
     local gpu_name=""
+    local utilization=""
     local temperature=""
     local input=""
+    local busy_file=""
+    local state=""
 
     if command -v nvidia-smi >/dev/null 2>&1; then
-        telemetry="$(timeout 2 nvidia-smi --query-gpu=name,temperature.gpu --format=csv,noheader,nounits 2>/dev/null | head -n 1)"
+        telemetry="$(timeout 2 nvidia-smi --query-gpu=name,utilization.gpu,temperature.gpu --format=csv,noheader,nounits 2>/dev/null | head -n 1)"
         if [[ "$telemetry" == *,* ]]; then
-            gpu_name="${telemetry%%,*}"
-            temperature="${telemetry##*,}"
+            IFS=',' read -r gpu_name utilization temperature <<<"$telemetry"
             gpu_name="${gpu_name#${gpu_name%%[![:space:]]*}}"
             gpu_name="${gpu_name%${gpu_name##*[![:space:]]}}"
+            utilization="${utilization//[[:space:]]/}"
             temperature="${temperature//[[:space:]]/}"
         fi
     fi
 
-    if [[ "$temperature" =~ ^[0-9]+$ ]]; then
-        emit_temperature GPU "$temperature" "$gpu_name" 80 90
+    if [[ "$utilization" =~ ^[0-9]+$ && "$temperature" =~ ^[0-9]+$ ]]; then
+        state="$(temperature_state "$temperature" 80 90)"
+        printf '{"text":" %d%% %d°C","tooltip":"%s\\nUtilization: %d%%\\nTemperature: %d°C","class":"%s"}\n' \
+            "$utilization" "$temperature" "$gpu_name" "$utilization" "$temperature" "$state"
         return
     fi
 
     if input="$(find_hwmon_input amdgpu edge)"; then
         temperature="$(read_millidegrees "$input")" || return 1
-        emit_temperature GPU "$temperature" amdgpu 80 90
+        busy_file="${input%/*}/device/gpu_busy_percent"
+        utilization=""
+        [[ ! -r "$busy_file" ]] || utilization="$(<"$busy_file")"
+        [[ "$utilization" =~ ^[0-9]+$ ]] || utilization=0
+        state="$(temperature_state "$temperature" 80 90)"
+        printf '{"text":" %d%% %d°C","tooltip":"AMD GPU\\nUtilization: %d%%\\nTemperature: %d°C","class":"%s"}\n' \
+            "$utilization" "$temperature" "$utilization" "$temperature" "$state"
         return
     fi
 

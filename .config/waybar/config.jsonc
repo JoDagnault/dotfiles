@@ -18,7 +18,7 @@
         "power-profiles-daemon",
         "cpu",
         "custom/cpu-temperature",
-        "custom/gpu-temperature",
+        "custom/gpu-status",
         "memory",
         "battery",
         "clock",
@@ -50,7 +50,7 @@
         "format-alt": "{:%Y-%m-%d %H:%M:%S}"
     },
     "cpu": {
-        "format": "{usage}% \uf2db",
+        "format": "\uf2db {usage}%",
         "tooltip": false
     },
     "memory": {
@@ -62,7 +62,7 @@
         "interval": 5,
         "hide-empty-text": true
     },
-    "custom/gpu-temperature": {
+    "custom/gpu-status": {
         "exec": "~/.config/waybar/temperature.sh gpu",
         "return-type": "json",
         "interval": 5,
