@@ -31,14 +31,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hypridle")
 end)
 
------------------------------
---- ENVIRONMENT VARIABLES ---
------------------------------
-
--- NVIDIA Wayland
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
-hl.env("__GLX_VENDRO_LIBRARY_NAME", "nvidia")
-
 ------------
 --- LOOK ---
 ------------
