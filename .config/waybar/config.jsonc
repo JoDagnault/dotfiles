@@ -17,8 +17,9 @@
         "network",
         "power-profiles-daemon",
         "cpu",
+        "custom/cpu-temperature",
+        "custom/gpu-temperature",
         "memory",
-        "temperature",
         "battery",
         "clock",
         "tray"
@@ -55,10 +56,17 @@
     "memory": {
         "format": "{}% \uf1c0"
     },
-    "temperature": {
-        "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["\uf2c9", "\uf2c9", "\uf2c9"]
+    "custom/cpu-temperature": {
+        "exec": "~/.config/waybar/temperature.sh cpu",
+        "return-type": "json",
+        "interval": 5,
+        "hide-empty-text": true
+    },
+    "custom/gpu-temperature": {
+        "exec": "~/.config/waybar/temperature.sh gpu",
+        "return-type": "json",
+        "interval": 5,
+        "hide-empty-text": true
     },
     "battery": {
         "states": {

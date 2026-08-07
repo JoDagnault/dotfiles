@@ -71,9 +71,10 @@ button:hover {
 #clock,
 #battery,
 #cpu,
+#custom-cpu-temperature,
+#custom-gpu-temperature,
 #memory,
 #disk,
-#temperature,
 #network,
 #pulseaudio,
 #wireplumber,
@@ -177,7 +178,13 @@ label:focus {
     color: #f53c3c;
 }
 
-#temperature.critical {
+#custom-cpu-temperature.warning,
+#custom-gpu-temperature.warning {
+    color: #e5a50a;
+}
+
+#custom-cpu-temperature.critical,
+#custom-gpu-temperature.critical {
     color: #eb4d4b;
 }
 
