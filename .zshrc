@@ -18,7 +18,7 @@ if [ -S "$XDG_RUNTIME_DIR/keyring/ssh" ]; then
 fi
 
 # bun completions
-[ -s "/home/jodagnault/.bun/_bun" ] && source "/home/jodagnault/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -26,4 +26,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+if (( $+commands[ng] )); then
+  source <(ng completion script)
+fi

@@ -13,7 +13,7 @@ hl.monitor({
 --- PROGRAMS ---
 ----------------
 
-local terminal = "kitty"
+local terminal = "kitty --directory ~"
 local fileManager = "dolphin"
 local menu = "wofi"
 
