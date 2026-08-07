@@ -87,7 +87,6 @@
         }
     },
     "network": {
-	"interface": "wlp2s0",
     	"family": "ipv4",
         "interval": 5,
         "format-wifi": "{essid:.14} {signalStrength}% \uf1eb",
