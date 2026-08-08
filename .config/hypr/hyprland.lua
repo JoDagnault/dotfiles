@@ -9,6 +9,26 @@ hl.monitor({
     scale = "auto",
 })
 
+hl.monitor({
+    output = "desc:BNQ BenQ RL2455 PCF07551SL0",
+    mode = "preferred",
+    position = "0x0",
+    scale = 1,
+})
+
+hl.monitor({
+    output = "desc:Acer Technologies XF250Q TA1AA0038541",
+    mode = "highrr",
+    position = "1920x0",
+    scale = 1,
+})
+
+hl.workspace_rule({
+    workspace = "1",
+    monitor = "desc:Acer Technologies XF250Q TA1AA0038541",
+    default = true,
+})
+
 ----------------
 --- PROGRAMS ---
 ----------------
