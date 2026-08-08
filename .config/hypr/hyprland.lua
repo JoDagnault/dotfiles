@@ -29,6 +29,17 @@ hl.workspace_rule({
     default = true,
 })
 
+hl.workspace_rule({
+    workspace = "9",
+    monitor = "desc:BNQ BenQ RL2455 PCF07551SL0",
+})
+
+hl.workspace_rule({
+    workspace = "10",
+    monitor = "desc:BNQ BenQ RL2455 PCF07551SL0",
+    default = true,
+})
+
 ----------------
 --- PROGRAMS ---
 ----------------
