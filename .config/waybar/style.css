@@ -71,7 +71,7 @@ button:hover {
 #clock,
 #battery,
 #cpu,
-#custom-cpu-temperature,
+#custom-cpu-status,
 #custom-gpu-status,
 #memory,
 #disk,
@@ -90,7 +90,7 @@ button:hover {
     padding-right: 4px;
 }
 
-#custom-cpu-temperature {
+#custom-cpu-status {
     padding-left: 0;
 }
 
@@ -186,12 +186,12 @@ label:focus {
     color: #f53c3c;
 }
 
-#custom-cpu-temperature.warning,
+#custom-cpu-status.warning,
 #custom-gpu-status.warning {
     color: #e5a50a;
 }
 
-#custom-cpu-temperature.critical,
+#custom-cpu-status.critical,
 #custom-gpu-status.critical {
     color: #eb4d4b;
 }

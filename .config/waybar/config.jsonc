@@ -17,7 +17,7 @@
         "network",
         "power-profiles-daemon",
         "cpu",
-        "custom/cpu-temperature",
+        "custom/cpu-status",
         "custom/gpu-status",
         "memory",
         "battery",
@@ -50,20 +50,20 @@
         "format-alt": "{:%Y-%m-%d %H:%M:%S}"
     },
     "cpu": {
-        "format": "\uf2db {usage}%",
+        "format": "{usage}%",
         "tooltip": false
     },
     "memory": {
         "format": "{}% \uf1c0"
     },
-    "custom/cpu-temperature": {
-        "exec": "~/.config/waybar/temperature.sh cpu",
+    "custom/cpu-status": {
+        "exec": "~/.config/waybar/cpu-status.sh",
         "return-type": "json",
         "interval": 5,
         "hide-empty-text": true
     },
     "custom/gpu-status": {
-        "exec": "~/.config/waybar/temperature.sh gpu",
+        "exec": "~/.config/waybar/gpu-status.sh",
         "return-type": "json",
         "interval": 5,
         "hide-empty-text": true
