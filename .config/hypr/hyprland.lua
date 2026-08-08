@@ -2,43 +2,32 @@
 --- Monitor ---
 ---------------
 
-hl.monitor({
-    output = "",
-    mode = "preferred",
-    position = "auto",
-    scale = "auto",
-})
+local function readDmiValue(name)
+    local file = io.open("/sys/class/dmi/id/" .. name, "r")
+    if not file then
+        return nil
+    end
 
-hl.monitor({
-    output = "desc:BNQ BenQ RL2455 PCF07551SL0",
-    mode = "preferred",
-    position = "0x0",
-    scale = 1,
-})
+    local value = file:read("*l")
+    file:close()
+    return value and value:match("^%s*(.-)%s*$")
+end
 
-hl.monitor({
-    output = "desc:Acer Technologies XF250Q TA1AA0038541",
-    mode = "highrr",
-    position = "1920x0",
-    scale = 1,
-})
+local productName = readDmiValue("product_name")
+local boardName = readDmiValue("board_name")
 
-hl.workspace_rule({
-    workspace = "1",
-    monitor = "desc:Acer Technologies XF250Q TA1AA0038541",
-    default = true,
-})
-
-hl.workspace_rule({
-    workspace = "9",
-    monitor = "desc:BNQ BenQ RL2455 PCF07551SL0",
-})
-
-hl.workspace_rule({
-    workspace = "10",
-    monitor = "desc:BNQ BenQ RL2455 PCF07551SL0",
-    default = true,
-})
+if productName == "Vivobook_ASUSLaptop M7400QC_M7400QC" or boardName == "M7400QC" then
+    require("machines.laptop")
+elseif boardName and boardName:match("B550%-A GAMING$") then
+    require("machines.desktop")
+else
+    hl.monitor({
+        output = "",
+        mode = "preferred",
+        position = "auto",
+        scale = "auto",
+    })
+end
 
 ----------------
 --- PROGRAMS ---
