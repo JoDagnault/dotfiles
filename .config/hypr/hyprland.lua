@@ -92,7 +92,7 @@ hl.config({
 	follow_mouse = 0,
 	float_switch_override_focus = 0,
 	sensitivity = 0.0,
-	accel_profile = "adaptive",
+	accel_profile = "flat",
 
 	touchpad = {
 	    natural_scroll = true,
@@ -107,7 +107,6 @@ hl.config({
         disable_hyprland_logo = true,
     },
 })
-
 
 hl.curve("easeOutQuint", {
   type = "bezier",
