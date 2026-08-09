@@ -4,6 +4,17 @@ setopt prompt_subst
 typeset -U path
 path=("$HOME/.local/bin" "$HOME/bin" $path)
 
+codex() {
+  case "${1:-}" in
+    login|logout|plugin|mcp-server|app-server|remote-control|completion|update|doctor|apply|a|cloud|exec-server|features|help|-h|--help|-V|--version)
+      command codex "$@"
+      ;;
+    *)
+      command codex --profile statusline "$@"
+      ;;
+  esac
+}
+
 precmd() {
   vcs_info
 }
