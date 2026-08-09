@@ -28,6 +28,7 @@ return {
           "basedpyright",
           "ts_ls",
           "clangd",
+          "cmake",
           "gopls",
           "jdtls",
           "sqls",

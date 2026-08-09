@@ -11,6 +11,7 @@ return {
             local parsers = {
                 "c",
                 "cpp",
+                "cmake",
                 "lua",
                 "vim",
                 "vimdoc",
