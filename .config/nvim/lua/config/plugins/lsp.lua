@@ -28,7 +28,7 @@ return {
           "basedpyright",
           "ts_ls",
           "clangd",
-          "cmake",
+          "neocmake",
           "gopls",
           "jdtls",
           "sqls",
