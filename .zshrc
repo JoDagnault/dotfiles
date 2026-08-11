@@ -10,7 +10,10 @@ codex() {
       command codex "$@"
       ;;
     *)
-      command codex --profile statusline "$@"
+      command codex \
+        --config 'tui.status_line=["model-with-reasoning", "current-dir", "git-branch", "run-state", "context-remaining", "five-hour-limit", "weekly-limit", "used-tokens", "total-input-tokens", "total-output-tokens"]' \
+        --config 'tui.status_line_use_colors=true' \
+        "$@"
       ;;
   esac
 }
